@@ -1,23 +1,26 @@
-name: github-action 
-env:
-	apiKey: ed692330a6db202e11e3ade8
-	apiSecret: 6e2122fb3774c640705055a6003090fd41a409ff9aee9c9898b967d44c67b0b54bc78605
-	testID: "15076597"
-	continuePipeline: "false" 
-	showTailLog: "false"
+name: github-action
 
-on: push jobs:
-	github-action:
-		runs-on: ubuntu-latest 
-		steps:
-			-	name: Checkout
-			uses:  actions/checkout@v2.3.4
-			-	name: Run Blazemeter test
-			uses: BlazeRunner-BZR/Github-Action@v8.1 
-			id: run-test
-			with:
-				apiKey: ${{env.apiKey}} 
-				apiSecret: ${{env.apiSecret}} 
-				testID: ${{env.testID}} 
-				continuePipeline: ${{env.continuePipeline}} 
-				showTailLog: ${{env.showTailLog}}
+on: 
+  push:
+
+jobs:
+  github-action:
+    runs-on: ubuntu-latest
+    env:
+      apiKey: ed692330a6db202e11e3ade8
+      apiSecret: 6e2122fb3774c640705055a6003090fd41a409ff9aee9c9898b967d44c67b0b54bc78605
+      testID: "15076597"
+      continuePipeline: "false"
+      showTailLog: "false"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+      - name: Run Blazemeter test
+        uses: BlazeRunner-BZR/Github-Action@v8.1
+        id: run-test
+        with:
+          apiKey: ${{ env.apiKey }}
+          apiSecret: ${{ env.apiSecret }}
+          testID: ${{ env.testID }}
+          continuePipeline: ${{ env.continuePipeline }}
+          showTailLog: ${{ env.showTailLog }}
